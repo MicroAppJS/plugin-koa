@@ -1,0 +1,69 @@
+{
+  "name": "plugin-koa",
+  "version": "0.0.0",
+  "description": "[Plugin] koa adapter plugin.",
+  "main": "src/index.js",
+  "scripts": {
+    "prepublishOnly": "npm run test",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "jest",
+    "publish:next": "npm publish --tag next",
+    "release": "micro-app release",
+    "release:alpha": "npm run release -- --preRelease=alpha",
+    "release:next": "npm run release -- --preRelease=next"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "homepage": "https://github.com/MicroAppJS/plugin-koa",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicroAppJS/plugin-koa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MicroAppJS/plugin-koa/issues"
+  },
+  "keywords": [
+    "micro",
+    "micro-app",
+    "micro-application",
+    "plugin",
+    "koa-adapter",
+    "adapter",
+    "koa"
+  ],
+  "author": {
+    "name": "Zyao89",
+    "email": "zyao89@gmail.com"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "peerDependencies": {
+    "@micro-app/cli": "^0.3.16"
+  },
+  "devDependencies": {
+    "@micro-app/cli": "^0.3.16",
+    "@micro-app/plugin-deploy": "^0.0.7",
+    "@types/jest": "^24.9.1",
+    "eslint-config-2o3t": "^2.0.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0"
+  },
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-convert": "^1.2.0",
+    "koa-logger": "^3.2.1",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^10.0.0",
+    "moment": "^2.29.1",
+    "portfinder": "^1.0.28"
+  }
+}

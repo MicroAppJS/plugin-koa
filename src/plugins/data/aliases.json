@@ -1,0 +1,13 @@
+{
+    "root": "./",
+    "src": "./src",
+    "app": "./src/app",
+    "config": "./src/config",
+    "helper": "./src/helper",
+    "plugin": "./src/plugin",
+    "middleware": "./src/middleware",
+    "router": "./src/router",
+    "utils": "./src/utils",
+    "controller": "./src/controller",
+    "service": "./src/service"
+}

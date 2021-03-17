@@ -1,0 +1,23 @@
+{
+    "koa-logger": {
+        "install": true,
+        "global": true
+    },
+    "custom-result": {
+        "install": false,
+        "global": true
+    },
+    "koa-onerror": {
+        "install": true,
+        "global": true
+    },
+    "koa-body": {
+        "install": true,
+        "global": false
+    },
+    "swagger": {
+        "install": true,
+        "global": false,
+        "dependencies": ["koa2-swagger-ui", "swagger-jsdoc"]
+    }
+}
