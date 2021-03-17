@@ -9,9 +9,11 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
     "publish:next": "npm publish --tag next",
-    "release": "micro-app release",
+    "release": "micro-app release --npm.skipChecks",
     "release:alpha": "npm run release -- --preRelease=alpha",
-    "release:next": "npm run release -- --preRelease=next"
+    "release:next": "npm run release -- --preRelease=next",
+    "release:minor": "npm run release minor",
+    "release:patch": "npm run release patch"
   },
   "files": [
     "bin",
