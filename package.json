@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "[Plugin] koa adapter plugin.",
   "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepublishOnly": "npm run test",
     "lint": "eslint .",
