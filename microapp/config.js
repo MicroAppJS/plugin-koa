@@ -2,7 +2,7 @@
 
 const config = {
     server: {
-        entry: '__tests__/app.js',
+        entry: 'tests/app.js',
     },
 };
 
