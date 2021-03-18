@@ -91,7 +91,7 @@ module.exports = function(app) {
 
 ### 开启 swagger
 
-配置 `.env` 文件，开启 Swagger
+配置 `.env` 文件，开启 Swagger，只支持 `src/**/*.js` 目录下文件
 
 ```conf
 DOCS_SWAGGER=true

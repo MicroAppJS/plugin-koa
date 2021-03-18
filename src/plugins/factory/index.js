@@ -36,6 +36,10 @@ module.exports = async function(api, info = {}) {
                 return reject(err);
             }
             resolve({ host: _host, port: _port, url: `http://${_host}:${_port}` });
+
+            if (process.env.DOCS_SWAGGER) {
+                logger.info('[Swagger UI]', `http://${_host}:${_port}/api/docs/swagger`);
+            }
         });
     });
 };
