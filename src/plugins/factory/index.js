@@ -1,9 +1,21 @@
 'use strict';
-
+const { logger } = require('@micro-app/shared-utils');
 
 module.exports = async function(api, info = {}) {
     const Application = require('./Application.js');
     const app = new Application(api, info);
+    app.on('error', function(err, ctx) {
+        // logger
+        logger.error('[系统异常]', err);
+    });
+
+    app.use(async (ctx, next) => {
+        try {
+            await next();
+        } catch (error) {
+            ctx.throw(error);
+        }
+    });
 
     const { index, port, host } = info;
     const runApp = require(index); // app.js

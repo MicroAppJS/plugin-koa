@@ -32,22 +32,54 @@ npm install -D @micro-app/plugin-koa
 
 ## Usage
 
+### 在 microapp/config 中配置
+
+```js
+'use strict';
+
+module.exports = {
+    ...
+    alias: {
+        config: './src/config',
+        helper: './src/helper',
+        service: './src/service',
+        plugin: './src/plugin',
+        middleware: './src/middleware',
+        router: './src/router',
+    },
+    server: {
+        entry: 'app.js',
+        options: {
+            abc: 123,
+        },
+        cc: 1,
+    },
+    devServer: {
+        port: 6666,
+    },
+};
+```
+
+### 入口文件 `server.entry` 中
+
+分发调用指定的模块，其中 `router` 为必须项
+
 ```js
 'use strict';
 
 
 module.exports = function(app) {
 
-    // 增强 $config
-    app.$dispatcher('config', require.resolve('@micro-app/test/config'));
-    // 配置全局 helper
-    app.$dispatcher('helper', require.resolve('@micro-app/test/helper'));
-    // 配置全局 service
-    app.$dispatcher('service', require.resolve('@micro-app/test/service'));
-    // 配置全局 plugin
-    app.$dispatcher('plugin', require.resolve('@micro-app/test/plugin'));
-    // 配置全局  middleware
-    app.$dispatcher('middleware', require.resolve('@micro-app/test/middleware'));
+    // // 增强 $config
+    // app.$dispatcher('config', require.resolve('@micro-app/test/config'));
+    // // 配置全局 helper
+    // app.$dispatcher('helper', require.resolve('@micro-app/test/helper'));
+    // // 配置全局 service
+    // app.$dispatcher('service', require.resolve('@micro-app/test/service'));
+    // // 配置全局 plugin
+    // app.$dispatcher('plugin', require.resolve('@micro-app/test/plugin'));
+    // // 配置全局  middleware
+    // app.$dispatcher('middleware', require.resolve('@micro-app/test/middleware'));
     // 配置路由 router
     app.$dispatcher('router', require.resolve('@micro-app/test/router'));
 
@@ -55,4 +87,49 @@ module.exports = function(app) {
 
 };
 
+```
+
+### 开启 swagger
+
+配置 `.env` 文件，开启 Swagger
+
+```conf
+DOCS_SWAGGER=true
+```
+
+配置 swagger 文档，需要在接口方法中增加注释，如下：
+
+```js
+// https://www.npmjs.com/package/swagger-jsdoc
+/**
+ * @swagger
+ * /api/docs/swagger.json:
+ *   get:
+ *     summary: 返回 swagger.json
+ *     description: 返回 json 格式的 swagger.json
+ *     responses:
+ *       200:
+ *         description: 成功
+ */
+router.get('/swagger.json', swaggerRoutes.swaggerJson());
+
+/**
+ * @swagger
+ * /api/docs/swagger:
+ *   get:
+ *     summary: swagger 页面
+ *     description: swagger 展示所有接口
+ *     responses:
+ *       200:
+ *         description: 成功
+ */
+router.get('/swagger', swaggerRoutes.swagger());
+```
+
+访问接口文档
+
+```js
+/api/docs/swagger
+// or
+/api/docs/swagger.json
 ```

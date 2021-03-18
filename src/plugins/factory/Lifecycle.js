@@ -7,25 +7,25 @@ module.exports = class Lifecycle {
         this.app = app;
     }
 
-    config(root) {
-        return this.__register__('config', root);
-    }
+    // config(root) {
+    //     return this.__register__('config', root);
+    // }
 
-    service(root) {
-        return this.__register__('service', root);
-    }
+    // service(root) {
+    //     return this.__register__('service', root);
+    // }
 
-    helper(root) {
-        return this.__register__('helper', root);
-    }
+    // helper(root) {
+    //     return this.__register__('helper', root);
+    // }
 
-    middleware(root) {
-        return this.__register__('middleware', root);
-    }
+    // middleware(root) {
+    //     return this.__register__('middleware', root);
+    // }
 
-    plugin(root) {
-        return this.__register__('plugin', root);
-    }
+    // plugin(root) {
+    //     return this.__register__('plugin', root);
+    // }
 
     router(root) {
         const app = this.app;
@@ -33,6 +33,7 @@ module.exports = class Lifecycle {
 
         // docs
         if (process.env.DOCS_SWAGGER) {
+            logger.info('[DOCS_SWAGGER]', 'swagger is opened!');
             app.useRoute('/api/docs', require('../docs')(app));
         }
         // 404 Not Found

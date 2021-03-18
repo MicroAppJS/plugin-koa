@@ -1,5 +1,5 @@
 {
-  "name": "plugin-koa",
+  "name": "@micro-app/plugin-koa",
   "version": "0.0.1",
   "description": "[Plugin] koa adapter plugin.",
   "main": "src/index.js",
@@ -68,7 +68,9 @@
     "koa-logger": "^3.2.1",
     "koa-onerror": "^4.1.0",
     "koa-router": "^10.0.0",
+    "koa2-swagger-ui": "^5.0.5",
     "moment": "^2.29.1",
-    "portfinder": "^1.0.28"
+    "portfinder": "^1.0.28",
+    "swagger-jsdoc": "3"
   }
 }

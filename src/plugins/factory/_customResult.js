@@ -72,4 +72,8 @@ module.exports = function(app) {
         );
         this.body = json;
     };
+
+    app.context.error = function(...args) {
+        return this.result(STATUS_CODES.StatusBadRequest, ...args);
+    };
 };

@@ -15,6 +15,7 @@ describe('koa serve', () => {
     it('serve', async () => {
         const result = await service.run('serve');
         expect(result).toBeUndefined();
-    }, 3000);
+        process.exit();
+    }, 1000);
 
 });

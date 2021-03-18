@@ -1,12 +1,17 @@
 'use strict';
 
 const swaggerJSDoc = require('swagger-jsdoc');
-const koaSwagger = require('koa2-swagger-ui');
-const { path } = require('@micro-app/shared-utils');
+const { koaSwagger } = require('koa2-swagger-ui');
+const { logger, path } = require('@micro-app/shared-utils');
 
 function swaggerOptionsFactory(spec, config) {
     if (!spec) {
         const info = config.info || {};
+        const root = info.root;
+        if (!root) {
+            logger.error('[swagger error]', 'root is null!!!');
+            return;
+        }
         return {
             swaggerDefinition: {
                 info: {
@@ -19,7 +24,7 @@ function swaggerOptionsFactory(spec, config) {
             // basePath: '/', // Base path (optional)
             },
             // Path to the API docs
-            apis: [ path.resolve(__dirname, '../**/*.js') ],
+            apis: [ path.resolve(root, '**/*.js'), path.resolve(__dirname, '**/*.js') ],
         };
     }
     return {
@@ -30,10 +35,11 @@ function swaggerOptionsFactory(spec, config) {
 }
 
 module.exports = function(app) {
-
     const config = app.$config || {};
-    const swaggerSpec = swaggerJSDoc(swaggerOptionsFactory(null, config));
+    const swaggerOptions = swaggerOptionsFactory(null, config);
+    if (!swaggerOptions) return;
 
+    const swaggerSpec = swaggerJSDoc(swaggerOptions);
     return {
         swaggerJson() {
             // Initialize swagger-jsdoc -> returns validated swagger spec in json format

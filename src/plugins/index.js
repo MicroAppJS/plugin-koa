@@ -1,7 +1,6 @@
 'use strict';
 
 const plugins = [
-    'init',
     'serve',
     'start',
 ];

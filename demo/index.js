@@ -9,6 +9,6 @@ service.registerPlugin({
 });
 
 (async () => {
-    await service.run('serve');
+    await service.run('start');
     // console.log(result);
 })();
