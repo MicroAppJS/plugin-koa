@@ -12,9 +12,10 @@ describe('koa serve', () => {
         link: path.join(__dirname, '../src/index.js'),
     });
 
-    it('serve', () => {
-        // const result = await service.run('serve');
-        console.info('OK');
+    it('serve', async () => {
+        const result = await service.run('serve');
+        console.info('OK', result);
+        process.exit();
     }, 1000);
 
 });
