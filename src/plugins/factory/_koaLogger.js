@@ -4,8 +4,6 @@ const { logger, CONSTANTS } = require('@micro-app/shared-utils');
 const koaLogger = require('koa-logger');
 const moment = require('moment');
 
-logger.level = process.env.DEBUG_LEVEL;
-
 module.exports = function(app) {
     const config = app.$config || {};
     const NAME = config.name || config.info.name || CONSTANTS.NAME;
