@@ -21,12 +21,11 @@ module.exports = class Application extends Koa {
     constructor(api, info) {
         super();
 
+        // 根路由
+        this.rootRouter = this[INIT_ROOT_ROUTER]();
         this.$api = this[CREATE_API](api);
         this.$config = this[CREATE_CONFIG](info);
         this.$lifecycle = this[CREATE_LIFECYCLE]();
-
-        // 根路由
-        this.rootRouter = this[INIT_ROOT_ROUTER]();
 
         // enhance context
         this.context.$config = this.$config;

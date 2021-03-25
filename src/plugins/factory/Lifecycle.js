@@ -5,6 +5,8 @@ const { tryRequire, _, logger } = require('@micro-app/shared-utils');
 module.exports = class Lifecycle {
     constructor(app) {
         this.app = app;
+
+        this.__init__();
     }
 
     // config(root) {
@@ -27,7 +29,7 @@ module.exports = class Lifecycle {
     //     return this.__register__('plugin', root);
     // }
 
-    router(root) {
+    __init__() {
         const app = this.app;
         const config = app.$config || {};
 
@@ -45,7 +47,6 @@ module.exports = class Lifecycle {
                 ctx.result(config.STATUS_CODES.StatusNotFound, 'Not Found');
             }
         });
-        return this.__register__('router', root);
     }
 
     __register__(name, root) {
