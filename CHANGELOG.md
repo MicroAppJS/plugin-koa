@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/MicroAppJS/plugin-koa/compare/v0.1.3...v0.2.0) (2021-03-29)
+
+
+### Features
+
+* 更新 `useRoute` 逻辑 ([5220bfc](https://github.com/MicroAppJS/plugin-koa/commit/5220bfca560698a78d75363f9c173170f7daa541))
+
 ## [0.1.3](https://github.com/MicroAppJS/plugin-koa/compare/v0.1.2...v0.1.3) (2021-03-25)
 
 
