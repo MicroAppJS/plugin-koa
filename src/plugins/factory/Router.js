@@ -3,12 +3,12 @@
 const KoaRouter = require('koa-router');
 
 class Router extends KoaRouter {
-    useRoute(path, ...middlewares) {
+    useRoute(...middlewares) {
         const subrouter = middlewares.pop();
         if (subrouter instanceof KoaRouter) {
-            this.use(path, ...middlewares, subrouter.routes(), subrouter.allowedMethods());
+            this.use(...middlewares, subrouter.routes(), subrouter.allowedMethods());
         } else {
-            this.use(path, ...middlewares, subrouter);
+            this.use(...middlewares, subrouter);
         }
         return this;
     }
