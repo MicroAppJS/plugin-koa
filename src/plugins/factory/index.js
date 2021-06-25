@@ -23,9 +23,10 @@ module.exports = async function(api, info = {}) {
 
     const portfinder = require('portfinder');
 
-    const _port = process.env.PORT || port || await portfinder.getPortPromise({
-        port: 3000, // minimum port
-        stopPort: 3333, // maximum port
+    const startPort = parseInt(process.env.PORT || port || 3000);
+    const _port = await portfinder.getPortPromise({
+        port: startPort, // minimum port
+        stopPort: startPort + 300, // maximum port
     });
 
     const _host = process.env.HOST || host || '0.0.0.0';
