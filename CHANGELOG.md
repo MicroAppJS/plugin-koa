@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.1...v0.2.2) (2021-06-25)
+
+
+### Bug Fixes
+
+* 修复 notfound 逻辑 ([c87de77](https://github.com/MicroAppJS/plugin-koa/commit/c87de7757425c8df6b6844ab740d6adeacce9ad4))
+
 ## [0.2.1](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.0...v0.2.1) (2021-06-25)
 
 
