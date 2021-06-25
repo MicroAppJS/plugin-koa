@@ -42,9 +42,9 @@ module.exports = class Lifecycle {
         app.use(async (ctx, next) => {
             await next();
             if (ctx.status === config.STATUS_CODES.StatusNotFound) {
-                ctx.result(config.STATUS_CODES.StatusNotFound, 'Not Found API');
-            } else if (!ctx.body) {
-                ctx.result(config.STATUS_CODES.StatusNotFound, 'Not Found');
+                if (!ctx.body) {
+                    ctx.result(config.STATUS_CODES.StatusNotFound, 'Not Found API');
+                }
             }
         });
     }
