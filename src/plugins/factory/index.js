@@ -19,7 +19,7 @@ module.exports = async function(api, info = {}) {
 
     const { index, port, host } = info;
     const runApp = require(index); // app.js
-    runApp(app);
+    await runApp(app);
 
     const portfinder = require('portfinder');
 
