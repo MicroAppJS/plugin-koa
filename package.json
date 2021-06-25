@@ -15,8 +15,8 @@
     "release": "micro-app release --npm.skipChecks",
     "release:alpha": "npm run release -- --preRelease=alpha",
     "release:next": "npm run release -- --preRelease=next",
-    "release:minor": "npm run release minor",
-    "release:patch": "npm run release patch"
+    "release:minor": "npm run release -- --increment minor",
+    "release:patch": "npm run release -- --increment patch"
   },
   "files": [
     "bin",
