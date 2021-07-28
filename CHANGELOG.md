@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.2...v0.2.3) (2021-07-28)
+
+
+### Features
+
+* add env.port & env.host ([60638cf](https://github.com/MicroAppJS/plugin-koa/commit/60638cfc049a07f13800021b39ddf34406f65476))
+
 ## [0.2.2](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.1...v0.2.2) (2021-06-25)
 
 
