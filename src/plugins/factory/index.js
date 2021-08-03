@@ -20,9 +20,18 @@ module.exports = async function(api, info = {}) {
     // 上下文参数
     const apiContext = api.context || {};
 
-    const { index, port, host } = info;
-    const runApp = require(index); // app.js
-    await runApp(app);
+    const { index, port, host, entries = [] } = info;
+    if (entries.length > 0) {
+        await entries.reduce((chain, entry) => {
+            const runApp = require(entry); // app.js
+            return chain.then(() => {
+                return Promise.resolve(runApp(app));
+            });
+        }, Promise.resolve());
+    } else { // 兼容
+        const runApp = require(index); // app.js
+        await runApp(app);
+    }
 
     const portfinder = require('portfinder');
 

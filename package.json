@@ -51,10 +51,10 @@
     ]
   },
   "peerDependencies": {
-    "@micro-app/cli": "^0.4.0"
+    "@micro-app/cli": "^0.4.1"
   },
   "devDependencies": {
-    "@micro-app/cli": "^0.4.0",
+    "@micro-app/cli": "^0.4.1",
     "@micro-app/plugin-deploy": "^0.0.8",
     "@types/jest": "^24.9.1",
     "eslint-config-2o3t": "^2.0.1",
