@@ -1,3 +1,11 @@
+## [0.2.4](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.3...v0.2.4) (2021-08-04)
+
+
+### Features
+
+* update deps ([07023c3](https://github.com/MicroAppJS/plugin-koa/commit/07023c3749dd99eeca6ed46694f843947a48194a))
+* 增加适配多服务入口配置逻辑 ([a4018e3](https://github.com/MicroAppJS/plugin-koa/commit/a4018e335d0f4d49fe39f7d2fadb9a3e588fcd6d))
+
 ## [0.2.3](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.2...v0.2.3) (2021-07-28)
 
 
