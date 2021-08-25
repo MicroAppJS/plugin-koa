@@ -1,3 +1,10 @@
+## [0.2.5](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.4...v0.2.5) (2021-08-25)
+
+
+### Features
+
+* support https ([92a6d2e](https://github.com/MicroAppJS/plugin-koa/commit/92a6d2e914f2af37b865c02052401f0184985b57))
+
 ## [0.2.4](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.3...v0.2.4) (2021-08-04)
 
 
