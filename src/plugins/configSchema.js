@@ -15,6 +15,17 @@ module.exports = {
             description: '后端服务独立配置. ( object )',
             type: 'object',
         },
+        https: {
+            description: '是否支持 https 配置. ( boolean | object )',
+            anyOf: [
+                {
+                    type: 'boolean',
+                },
+                {
+                    type: 'object',
+                },
+            ],
+        },
     },
     required: [
         'entry',

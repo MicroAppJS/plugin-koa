@@ -126,6 +126,8 @@ router.get('/swagger.json', swaggerRoutes.swaggerJson());
 router.get('/swagger', swaggerRoutes.swagger());
 ```
 
+> 可参考：https://editor.swagger.io/
+
 访问接口文档
 
 ```js

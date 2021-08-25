@@ -20,7 +20,7 @@ module.exports = async function(api, info = {}) {
     // 上下文参数
     const apiContext = api.context || {};
 
-    const { index, port, host, entries = [] } = info;
+    const { index, port, host, entries = [], https = false } = info;
     if (entries.length > 0) {
         await entries.reduce((chain, entry) => {
             const runApp = require(entry); // app.js
@@ -43,16 +43,55 @@ module.exports = async function(api, info = {}) {
 
     const _host = process.env.HOST || apiContext.host || host || '0.0.0.0';
 
+    // const supportProtocols = ['http', 'https'];
+    // app.listen(_port, _host, err => {
+    //     if (err) {
+    //         return reject(err);
+    //     }
+    //     resolve({ host: _host, port: _port, url: `http://${_host}:${_port}` });
+
+    //     if (process.env.DOCS_SWAGGER) {
+    //         logger.info('[Swagger UI]', `http://${_host}:${_port}/api/docs/swagger`);
+    //     }
+    // });
+
+    const ps = [ createServer(app, { protocol: 'http', host: _host, port: _port }) ];
+    if (https) {
+        ps.push(createServer(app, { protocol: 'https', host: _host, port: +_port + 1 }, typeof https === 'object' && https));
+    }
+    return Promise.all(ps).then(ress => {
+        const res = { ...ress[0] };
+        res.https = ress[1];
+        return ress[0]; // 只返回 http 配置
+    });
+};
+
+function createServer(app, { protocol, host, port }, options) {
     return new Promise((resolve, reject) => {
-        app.listen(_port, _host, err => {
+        const errCb = err => {
             if (err) {
                 return reject(err);
             }
-            resolve({ host: _host, port: _port, url: `http://${_host}:${_port}` });
+            resolve({ host, port, url: `${protocol}://${host}:${port}` });
 
             if (process.env.DOCS_SWAGGER) {
-                logger.info('[Swagger UI]', `http://${_host}:${_port}/api/docs/swagger`);
+                logger.info('[Swagger UI]', `${protocol}://${host}:${port}/api/docs/swagger`);
             }
-        });
+        };
+        if (protocol === 'https') {
+            const https = require('https');
+            let client = null;
+            if (options) {
+                client = https.createServer(options, app.callback());
+            } else {
+                client = https.createServer(app.callback());
+            }
+            client.listen(port, errCb);
+        } else if (protocol === 'http') {
+            const http = require('http');
+            http.createServer(app.callback()).listen(port, errCb);
+        } else {
+            reject(new Error(`Not Support protocol: ${protocol}!`));
+        }
     });
-};
+}
