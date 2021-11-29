@@ -1,3 +1,10 @@
+## [0.2.6](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.5...v0.2.6) (2021-11-29)
+
+
+### Features
+
+* 当禁用响应时，不再返回 ([8504664](https://github.com/MicroAppJS/plugin-koa/commit/8504664496453c5523012a4f73e30d034f28360f))
+
 ## [0.2.5](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.4...v0.2.5) (2021-08-25)
 
 

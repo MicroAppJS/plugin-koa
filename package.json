@@ -1,6 +1,6 @@
 {
   "name": "@micro-app/plugin-koa",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "[Plugin] koa adapter plugin.",
   "main": "src/index.js",
   "publishConfig": {
