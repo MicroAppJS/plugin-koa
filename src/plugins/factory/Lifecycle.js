@@ -41,6 +41,7 @@ module.exports = class Lifecycle {
         // 404 Not Found
         app.use(async (ctx, next) => {
             await next();
+            if (ctx.respond === false) return; // 禁用响应
             if (ctx.status === config.STATUS_CODES.StatusNotFound) {
                 if (!ctx.body) {
                     ctx.result(config.STATUS_CODES.StatusNotFound, 'Not Found API');
