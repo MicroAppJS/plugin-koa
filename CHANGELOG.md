@@ -1,3 +1,11 @@
+# [0.3.0](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.6...v0.3.0) (2022-02-15)
+
+
+### Features
+
+* update scripts ([8c557ea](https://github.com/MicroAppJS/plugin-koa/commit/8c557ea6964aade07f6ce1b46272809bab761cec))
+* 更新 swagger 可定制化根目录配置，如 `DOCS_SWAGGER_ROOT` ([752188f](https://github.com/MicroAppJS/plugin-koa/commit/752188fc0aa94121787fe6ec16f9d85656ce912b))
+
 ## [0.2.6](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.5...v0.2.6) (2021-11-29)
 
 
