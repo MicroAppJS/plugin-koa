@@ -24,7 +24,12 @@ function swaggerOptionsFactory(spec, config) {
             // basePath: '/', // Base path (optional)
             },
             // Path to the API docs
-            apis: [ path.resolve(root, 'src/**/*.js'), path.resolve(__dirname, '**/*.js') ],
+            apis: [
+                path.resolve(root, 'src/**/*.js'),
+                path.resolve(__dirname, '**/*.js'),
+            ].concat(process.env.DOCS_SWAGGER_ROOT ? [
+                path.resolve(process.env.DOCS_SWAGGER_ROOT, '**/*.js'),
+            ] : []),
         };
     }
     return {

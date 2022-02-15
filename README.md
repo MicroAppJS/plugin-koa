@@ -97,6 +97,12 @@ module.exports = function(app) {
 DOCS_SWAGGER=true
 ```
 
+通过扩展配置 `DOCS_SWAGGER_ROOT`，可支持其它目录 `path.resolve(process.env.DOCS_SWAGGER_ROOT, '**/*.js')` 目录下文件
+
+```conf
+DOCS_SWAGGER_ROOT={{ dirname }}
+```
+
 配置 swagger 文档，需要在接口方法中增加注释，如下：
 
 ```js
