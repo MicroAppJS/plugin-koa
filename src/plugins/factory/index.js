@@ -31,6 +31,12 @@ module.exports = async function(api, info = {}) {
         server = createServer(app, { protocol, isOpenHttp2: http2 });
     }
 
+    if (!server) {
+        throw new Error('server is null');
+    }
+
+    app.server = server;
+
     if (entries.length > 0) {
         await entries.reduce((chain, entry) => {
             const runApp = require(entry); // app.js
@@ -51,7 +57,7 @@ module.exports = async function(api, info = {}) {
     });
     const _host = process.env.HOST || apiContext.host || host || '0.0.0.0';
 
-    const ps = [ listen(server, { protocol, host: _host, port: _port }) ];
+    const ps = [ listen(app, { protocol, host: _host, port: _port }) ];
     return Promise.all(ps).then(ress => {
         const res = { ...ress[0] };
         return res; // 只返回第一个配置
@@ -89,11 +95,10 @@ function createServer(app, { protocol, isOpenHttp2 }, options) {
         throw new Error(`Not Support protocol: ${protocol}!`);
     }
 
-    app.server = server;
     return server;
 }
 
-function listen(server, { protocol, host, port }) {
+function listen(app, { protocol, host, port }) {
     return new Promise((resolve, reject) => {
         const errCb = err => {
             if (err) {
@@ -106,8 +111,8 @@ function listen(server, { protocol, host, port }) {
             }
         };
 
-        if (server) {
-            server.listen(port, errCb);
+        if (app) {
+            app.listen(app.server, port, errCb);
         } else {
             reject(new Error(`Not Support protocol: ${protocol}!`));
         }

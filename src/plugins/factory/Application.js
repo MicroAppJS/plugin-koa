@@ -1,7 +1,7 @@
 'use strict';
 
 const Koa = require('koa');
-const { _, logger, isDocker } = require('@micro-app/shared-utils');
+const { _, logger, isDocker, assert } = require('@micro-app/shared-utils');
 
 const Lifecycle = require('./Lifecycle.js');
 const Router = require('./Router.js');
@@ -144,9 +144,14 @@ module.exports = class Application extends Koa {
     }
 
     callback(...args) {
+        return super.callback(...args);
+    }
+
+    listen(server, ...args) {
+        assert(server, 'server must be required');
         const rootRouter = this.rootRouter;
         this.use(rootRouter.routes());
         this.use(rootRouter.allowedMethods());
-        return super.callback(...args);
+        return server.listen(...args);
     }
 };
