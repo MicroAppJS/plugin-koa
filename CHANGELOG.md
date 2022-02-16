@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/MicroAppJS/plugin-koa/compare/v0.3.0...v0.4.0) (2022-02-16)
+
+
+### Features
+
+* 调整创建顺序逻辑，并将 server 挂载在 app 上 ([de62bb1](https://github.com/MicroAppJS/plugin-koa/commit/de62bb13d5f0e80cf542260e879ffb56f2005d94))
+
 # [0.3.0](https://github.com/MicroAppJS/plugin-koa/compare/v0.2.6...v0.3.0) (2022-02-15)
 
 
