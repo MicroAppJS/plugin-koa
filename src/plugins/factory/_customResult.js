@@ -50,8 +50,9 @@ module.exports = function(app) {
             json.path = this.path;
         }
 
-        if (this.path && this.path.startsWith('/api')) {
-            const version = this.path.replace(/^\/?api\/?/, '').split('/')[0];
+        // api 前缀匹配后，会提取 version 字段
+        if (this.path && this.path.startsWith('/api') && this.params) {
+            const version = this.params.version;
             if (version) {
                 json.version = version;
             }

@@ -19,6 +19,7 @@ module.exports = {
             abc: 123,
         },
         cc: 1,
+        // http2: true,
     },
     devServer: {
         port: 6666,

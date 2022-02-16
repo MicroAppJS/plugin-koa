@@ -20,7 +20,17 @@ module.exports = async function(api, info = {}) {
     // 上下文参数
     const apiContext = api.context || {};
 
-    const { index, port, host, entries = [], https = false } = info;
+    const { index, port, host, entries = [], https = false, http2 = false } = info;
+
+    const protocol = https ? 'https' : 'http';
+
+    let server;
+    if (https) {
+        server = createServer(app, { protocol, isOpenHttp2: http2 }, typeof https === 'object' && https);
+    } else {
+        server = createServer(app, { protocol, isOpenHttp2: http2 });
+    }
+
     if (entries.length > 0) {
         await entries.reduce((chain, entry) => {
             const runApp = require(entry); // app.js
@@ -34,39 +44,56 @@ module.exports = async function(api, info = {}) {
     }
 
     const portfinder = require('portfinder');
-
     const startPort = parseInt(process.env.PORT || apiContext.port || port || 3000);
     const _port = await portfinder.getPortPromise({
         port: startPort, // minimum port
         stopPort: startPort + 300, // maximum port
     });
-
     const _host = process.env.HOST || apiContext.host || host || '0.0.0.0';
 
-    // const supportProtocols = ['http', 'https'];
-    // app.listen(_port, _host, err => {
-    //     if (err) {
-    //         return reject(err);
-    //     }
-    //     resolve({ host: _host, port: _port, url: `http://${_host}:${_port}` });
-
-    //     if (process.env.DOCS_SWAGGER) {
-    //         logger.info('[Swagger UI]', `http://${_host}:${_port}/api/docs/swagger`);
-    //     }
-    // });
-
-    const ps = [ createServer(app, { protocol: 'http', host: _host, port: _port }) ];
-    if (https) {
-        ps.push(createServer(app, { protocol: 'https', host: _host, port: +_port + 1 }, typeof https === 'object' && https));
-    }
+    const ps = [ listen(server, { protocol, host: _host, port: _port }) ];
     return Promise.all(ps).then(ress => {
         const res = { ...ress[0] };
-        res.https = ress[1];
-        return ress[0]; // 只返回 http 配置
+        return res; // 只返回第一个配置
     });
 };
 
-function createServer(app, { protocol, host, port }, options) {
+function createServer(app, { protocol, isOpenHttp2 }, options) {
+    let server = null;
+    if (protocol === 'https') {
+        const https = require('https');
+        if (options) {
+            if (isOpenHttp2) {
+                const http2 = require('http2');
+                server = http2.createSecureServer(options, app.callback());
+            } else {
+                server = https.createServer(options, app.callback());
+            }
+        } else {
+            if (isOpenHttp2) {
+                throw new Error('https "options" argument must be of type object.');
+            }
+            server = https.createServer(app.callback());
+        }
+    } else if (protocol === 'http') {
+        if (isOpenHttp2) {
+            const http2 = require('http2');
+            server = http2.createServer(app.callback());
+        } else {
+            const http = require('http');
+            server = http.createServer(app.callback());
+        }
+    }
+
+    if (!server) {
+        throw new Error(`Not Support protocol: ${protocol}!`);
+    }
+
+    app.server = server;
+    return server;
+}
+
+function listen(server, { protocol, host, port }) {
     return new Promise((resolve, reject) => {
         const errCb = err => {
             if (err) {
@@ -78,18 +105,9 @@ function createServer(app, { protocol, host, port }, options) {
                 logger.info('[Swagger UI]', `${protocol}://${host}:${port}/api/docs/swagger`);
             }
         };
-        if (protocol === 'https') {
-            const https = require('https');
-            let client = null;
-            if (options) {
-                client = https.createServer(options, app.callback());
-            } else {
-                client = https.createServer(app.callback());
-            }
-            client.listen(port, errCb);
-        } else if (protocol === 'http') {
-            const http = require('http');
-            http.createServer(app.callback()).listen(port, errCb);
+
+        if (server) {
+            server.listen(port, errCb);
         } else {
             reject(new Error(`Not Support protocol: ${protocol}!`));
         }
