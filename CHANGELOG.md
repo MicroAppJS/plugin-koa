@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/MicroAppJS/plugin-koa/compare/v0.4.0...v0.4.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* 修复逻辑顺序 ([6de9f2b](https://github.com/MicroAppJS/plugin-koa/commit/6de9f2bd38061a5aad4ea9d586dc8b640f2fb210))
+
 # [0.4.0](https://github.com/MicroAppJS/plugin-koa/compare/v0.3.0...v0.4.0) (2022-02-16)
 
 
