@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
+    "demo": "cd demo && node index.js",
     "publish:next": "npm publish --tag next",
     "release": "micro-app release --npm.skipChecks",
     "release:alpha": "npm run release -- --preRelease=alpha",
@@ -54,8 +55,8 @@
     "@micro-app/cli": "^0.4.1"
   },
   "devDependencies": {
-    "@micro-app/cli": "^0.4.1",
-    "@micro-app/plugin-deploy": "^0.0.8",
+    "@micro-app/cli": "^0.5.1",
+    "@micro-app/plugin-deploy": "^0.0.9",
     "@types/jest": "^24.9.1",
     "eslint-config-2o3t": "^2.0.2",
     "husky": "^3.1.0",
@@ -63,13 +64,13 @@
     "lint-staged": "^9.5.0"
   },
   "dependencies": {
-    "koa": "^2.13.1",
+    "koa": "^2.13.4",
     "koa-convert": "^2.0.0",
     "koa-logger": "^3.2.1",
-    "koa-onerror": "^4.1.0",
-    "koa-router": "^10.0.0",
-    "koa2-swagger-ui": "^5.0.5",
-    "moment": "^2.29.1",
+    "koa-onerror": "^4.2.0",
+    "koa-router": "^10.1.1",
+    "koa2-swagger-ui": "^5.5.0",
+    "moment": "^2.29.2",
     "portfinder": "^1.0.28",
     "swagger-jsdoc": "3.7.0"
   }
