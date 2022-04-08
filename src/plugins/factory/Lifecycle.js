@@ -9,26 +9,6 @@ module.exports = class Lifecycle {
         this.__init__();
     }
 
-    // config(root) {
-    //     return this.__register__('config', root);
-    // }
-
-    // service(root) {
-    //     return this.__register__('service', root);
-    // }
-
-    // helper(root) {
-    //     return this.__register__('helper', root);
-    // }
-
-    // middleware(root) {
-    //     return this.__register__('middleware', root);
-    // }
-
-    // plugin(root) {
-    //     return this.__register__('plugin', root);
-    // }
-
     __init__() {
         const app = this.app;
         const config = app.$config || {};

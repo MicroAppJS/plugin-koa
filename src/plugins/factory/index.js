@@ -37,6 +37,18 @@ module.exports = async function(api, info = {}) {
 
     app.server = server;
 
+    const portfinder = require('portfinder');
+    const startPort = parseInt(process.env.PORT || apiContext.port || port || 3000);
+    const _port = await portfinder.getPortPromise({
+        port: startPort, // minimum port
+        stopPort: startPort + 300, // maximum port
+    });
+    const _host = process.env.HOST || apiContext.host || host || '0.0.0.0';
+
+    // 基本信息
+    const serverInfo = { protocol, host: _host, port: _port };
+    app.server.info = serverInfo; 
+
     if (entries.length > 0) {
         await entries.reduce((chain, entry) => {
             const runApp = require(entry); // app.js
@@ -49,15 +61,7 @@ module.exports = async function(api, info = {}) {
         await runApp(app);
     }
 
-    const portfinder = require('portfinder');
-    const startPort = parseInt(process.env.PORT || apiContext.port || port || 3000);
-    const _port = await portfinder.getPortPromise({
-        port: startPort, // minimum port
-        stopPort: startPort + 300, // maximum port
-    });
-    const _host = process.env.HOST || apiContext.host || host || '0.0.0.0';
-
-    const ps = [ listen(app, { protocol, host: _host, port: _port }) ];
+    const ps = [ listen(app, serverInfo) ];
     return Promise.all(ps).then(ress => {
         const res = { ...ress[0] };
         return res; // 只返回第一个配置
