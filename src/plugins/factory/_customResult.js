@@ -66,10 +66,10 @@ module.exports = function(app) {
         }
 
         this.logger.printf('Response Result', `${this.method} ${this.path}`, '\n',
-            JSON.stringify(json, null, 4)
-                .split('\n')
-                .slice(0, 20)
-                .join('\n')
+            JSON.stringify(Object.keys(json).reduce((obj, key) => {
+                obj[key] = JSON.stringify(json[key]);
+                return obj;
+            }, {}), null, 4)
         );
         this.body = json;
     };

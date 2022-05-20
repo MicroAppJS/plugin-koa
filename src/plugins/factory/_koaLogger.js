@@ -8,29 +8,50 @@ module.exports = function(app) {
     const config = app.$config || {};
     const NAME = config.name || config.info.name || CONSTANTS.NAME;
 
+    // 日志等级
+    const LOGGER_LEVEL = process.env.MICROAPP_LOGGER_LEVEL || 5;
+
     const customLogger = {
         debug(...args) {
+            if (Number(LOGGER_LEVEL) <= 0) {
+                return;
+            }
             const time = getTime();
             logger.debug(`[${time}]`, ...args);
         },
         error(...args) {
+            if (Number(LOGGER_LEVEL) <= 1) {
+                return;
+            }
             const time = getTime();
             logger.error(`[${time}]`, ...args);
         },
         warn(...args) {
+            if (Number(LOGGER_LEVEL) <= 2) {
+                return;
+            }
             const time = getTime();
             logger.warn(`[${time}]`, ...args);
         },
         info(...args) {
+            if (Number(LOGGER_LEVEL) <= 4) {
+                return;
+            }
             const time = getTime();
             logger.info(`[${time}]`, ...args);
         },
         success(...args) {
+            if (Number(LOGGER_LEVEL) <= 4) {
+                return;
+            }
             const time = getTime();
             logger.success(`[${time}]`, ...args);
         },
 
         printf(name = '', ...args) {
+            if (Number(LOGGER_LEVEL) <= 4) {
+                return;
+            }
             const time = getTime();
             const title = `[${time}] | ${name}`;
             const len = title.length;
