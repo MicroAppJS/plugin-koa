@@ -13,7 +13,7 @@
     "test": "jest",
     "demo": "cd demo && node index.js",
     "publish:next": "npm publish --tag next",
-    "release": "micro-app release --npm.skipChecks",
+    "release": "micro-app release",
     "release:alpha": "npm run release -- --preRelease=alpha",
     "release:next": "npm run release -- --preRelease=next",
     "release:minor": "npm run release -- minor",
