@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/MicroAppJS/plugin-koa/compare/v0.5.0...v0.5.1) (2022-05-20)
+
+
+### Features
+
+* add `MICROAPP_LOGGER_LEVEL` 日志等级配置，默认全开为 5 ([329afeb](https://github.com/MicroAppJS/plugin-koa/commit/329afeb5c73f237ca8f1f60b7174bf0419d8bf61))
+* update ([4b50ede](https://github.com/MicroAppJS/plugin-koa/commit/4b50ede7ef3cf19f01261922729b9ce4574f8c7a))
+* 优化日志打印判断逻辑 ([731fdb0](https://github.com/MicroAppJS/plugin-koa/commit/731fdb0064a53cf6c507154e0d885fda872b2fae))
+
 # [0.5.0](https://github.com/MicroAppJS/plugin-koa/compare/v0.4.1...v0.5.0) (2022-04-08)
 
 
