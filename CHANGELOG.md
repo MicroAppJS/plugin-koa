@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/MicroAppJS/plugin-koa/compare/v0.5.1...v0.5.2) (2022-11-13)
+
+
+### Features
+
+* update result log ([0ce6cac](https://github.com/MicroAppJS/plugin-koa/commit/0ce6cac723b7347531854e5d5ad70df4435c4f72))
+
 ## [0.5.1](https://github.com/MicroAppJS/plugin-koa/compare/v0.5.0...v0.5.1) (2022-05-20)
 
 
