@@ -68,6 +68,9 @@ module.exports = function(app) {
         this.logger.printf('Response Result', `${this.method} ${this.path}`, '\n',
             JSON.stringify(Object.keys(json).reduce((obj, key) => {
                 obj[key] = JSON.stringify(json[key]);
+                if (obj[key] && obj[key].length > 100) {
+                    obj[key] = obj[key].slice(0, 100) + '...';
+                }
                 return obj;
             }, {}), null, 4)
         );
