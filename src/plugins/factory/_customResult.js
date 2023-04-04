@@ -36,10 +36,10 @@ module.exports = function(app) {
             requestId,
             timestamp: Date.now(),
         };
-        if (result) {
+        if (!_.isUndefined(result)) {
             json.result = result;
         }
-        if (message) {
+        if (!_.isUndefined(message)) {
             json.message = message;
         } else {
             // TODO status 判断
