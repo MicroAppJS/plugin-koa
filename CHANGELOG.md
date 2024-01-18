@@ -1,3 +1,10 @@
+## [0.5.4](https://github.com/MicroAppJS/plugin-koa/compare/v0.5.3...v0.5.4) (2024-01-18)
+
+
+### Features
+
+* support ts ([2d2cb97](https://github.com/MicroAppJS/plugin-koa/commit/2d2cb97905f7f787911a7175597a10ddd1bc5cf8))
+
 ## [0.5.3](https://github.com/MicroAppJS/plugin-koa/compare/v0.5.2...v0.5.3) (2023-04-04)
 
 
